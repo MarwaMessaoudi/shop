@@ -37,6 +37,7 @@ const cents = dto.items.reduce((sum, line) => {
 const p = snapshots.get(line.productId)!;
 return sum + Math.round(Number(p.price) * 100) * line.quantity;
 }, 0);
+
 const order = await manager.save(CustomerOrder, manager.create(
 CustomerOrder, { clientId: client.id,
 total: (cents / 100).toFixed(2), status: 'CREATED' }));
